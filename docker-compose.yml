@@ -1,0 +1,19 @@
+version: "2"
+
+services:
+  subsonic:
+    build:
+      context: ./
+      args:
+        SUBSONIC_VERSION: 6.1.3
+    image: danisla/subsonic:6.1.3
+    restart: always
+    volumes:
+      - /store/subsonic-state:/opt/app/state:rw
+      - /store/mp3:/mnt/music:rw
+    environment:
+      SUBSONIC_UID: 1000
+      SUBSONIC_MAX_MEMORY: 1000
+      SUBSONIC_CONTEXT_PATH: /subsonic
+    ports:
+      - 4040:4040
